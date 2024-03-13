@@ -37,15 +37,15 @@ public class Venda {
 	@NotNull(message = "Pagamento não pode ser nulo")
 	private String pagamento;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties("venda")
 	private Cliente cliente;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties("venda")
 	private Funcionario funcionario;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "produtos_venda")
 	private List<Produto> produto;
 
