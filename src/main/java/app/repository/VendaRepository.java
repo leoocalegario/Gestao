@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.entity.Venda;
 
-public interface VendaRepository extends JpaRepository<Venda, Long>{
-	
+public interface VendaRepository extends JpaRepository<Venda, Long> {
+
 	public Venda findByEndereco(String endereco);
-	
-	@Query("From Venda v WHERE v.vt=:vt" )
+
+	@Query("From Venda v WHERE v.vt=:vt")
 	public List<Venda> findByVt(int vt);
-	
-	
-	
+
+	public Venda findByPagamento(String pagamento);
+
 }

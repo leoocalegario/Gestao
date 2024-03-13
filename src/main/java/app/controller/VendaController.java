@@ -25,7 +25,7 @@ public class VendaController {
 
 	@Autowired
 	private VendaService vendaService;
-	
+
 	@PostMapping("save")
 	public ResponseEntity<String> save(@RequestBody Venda venda) {
 		try {
@@ -35,87 +35,100 @@ public class VendaController {
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@PutMapping("/update/{id}")
-	public ResponseEntity< String> update(@RequestBody Venda venda, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody Venda venda, @PathVariable long id) {
 		try {
 			String mensagem = this.vendaService.update(id, venda);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-			
+
 		}
 	}
-	
+
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Venda>> listAll() {
-		
+
 		try {
-			
+
 			List<Venda> lista = this.vendaService.listAll();
 			return new ResponseEntity<>(lista, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-			
+
 		}
-		
+
 	}
-	
+
 	@GetMapping("/findByIdVenda{idVenda}")
 	public ResponseEntity<Venda> delete(@PathVariable long idVenda) {
-		
+
 		try {
-			
+
 			Venda venda = this.vendaService.findById(idVenda);
 			return new ResponseEntity<>(venda, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
+
 	@DeleteMapping("/delete/{idVenda}")
 	public ResponseEntity<String> delete(@PathVariable int idVenda) {
-		
+
 		try {
 			String mensagem = this.vendaService.delete(idVenda);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
+
 	@GetMapping("/findByVt")
 	public ResponseEntity<List<Venda>> findByVt(@RequestParam int vt) {
 		try {
-			
+
 			List<Venda> lista = this.vendaService.findByVt(vt);
 			return new ResponseEntity<>(lista, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-			
+
 		}
 	}
-	
+
 	@GetMapping("/findByEndereco")
-	public ResponseEntity <Venda> findByEndereco(@RequestParam String endereco) {
+	public ResponseEntity<Venda> findByEndereco(@RequestParam String endereco) {
 		try {
 			Venda venda = this.vendaService.findByEndereco(endereco);
 			return new ResponseEntity<>(venda, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
-			
+
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-			
+
+		}
+	}
+
+	@GetMapping("/findByPagamento")
+	public ResponseEntity<Venda> findByPagamento(@RequestParam String pagamento) {
+		try {
+			Venda venda = this.vendaService.findByEndereco(pagamento);
+			return new ResponseEntity<>(venda, HttpStatus.OK);
+
+		} catch (Exception e) {
+
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
 		}
 	}
 }

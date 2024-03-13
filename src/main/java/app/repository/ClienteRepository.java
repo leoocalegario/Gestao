@@ -13,7 +13,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 	@Query("FROM Cliente c where c.nome LIKE %:nome")
 	public List<Cliente> findByNomeLike(String nome);
-	
+
 	public Cliente findByTelefone(String telefone);
 
 }

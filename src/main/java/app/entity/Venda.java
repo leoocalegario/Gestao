@@ -34,6 +34,8 @@ public class Venda {
 	private String endereco;
 	@NotNull(message = "Vt não pode ser nulo")
 	private int vt;
+	@NotNull(message = "Pagamento não pode ser nulo")
+	private String pagamento;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("venda")

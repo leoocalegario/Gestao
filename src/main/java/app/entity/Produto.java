@@ -1,12 +1,9 @@
 package app.entity;
 
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -30,5 +27,8 @@ public class Produto {
 
 	@NotNull(message = "Valor não pode ser nulo")
 	private int valor;
+
+	@NotNull(message = "Valor não pode ser nulo")
+	private String categoria;
 
 }
