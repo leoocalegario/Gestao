@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,26 +27,28 @@ import lombok.Setter;
 
 public class Venda {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement para o ID
 	private long id;
 
 	@NotNull(message = "Endereço não pode ser nulo")
 	private String endereco;
 	@NotNull(message = "Vt não pode ser nulo")
-	private int vt;
+	private double vt;
 	@NotNull(message = "Pagamento não pode ser nulo")
 	private String pagamento;
+	@NotBlank
+	private String status;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE) // cascade é a relacao Many, varias vendas podem estar atreladas a um cliente. 
 	@JsonIgnoreProperties("venda")
 	private Cliente cliente;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.MERGE) // relacao ManyToOne muitas vendas para um funcionario.
 	@JsonIgnoreProperties("venda")
 	private Funcionario funcionario;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.MERGE) // relacao ManyToMany muitas vendas para muitos produtos.
 	@JoinTable(name = "produtos_venda")
 	private List<Produto> produto;
 

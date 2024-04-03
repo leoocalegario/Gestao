@@ -23,21 +23,24 @@ import lombok.Setter;
 
 public class Cliente {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id //identifica como primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //basicamente um autoincrement
 	private long id;
+	
 	@NotNull(message = "Nome não pode ser nulo")
 	private String nome;
+	
 	@NotNull(message = "CPF não pode ser nulo")
 	private String cpf;
 
 	@NotNull(message = "Idade não pode ser nulo")
 	private int idade;
+	
 	@NotNull(message = "Telefone não pode ser nulo")
 	private String telefone;
 
 	@OneToMany(mappedBy = "cliente")
-	@JsonIgnoreProperties("cliente")
+	@JsonIgnoreProperties("cliente")//determinadas propriedades de uma classe devem ser ignoradas durante o processo de serializaçao
 	private List<Venda> venda;
 
 }

@@ -37,9 +37,9 @@ public class VendaController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody Venda venda, @PathVariable long id) {
+	public ResponseEntity<String> update(@PathVariable Long id,@RequestBody Venda venda) {
 		try {
-			String mensagem = this.vendaService.update(id, venda);
+			String mensagem = this.vendaService.update(venda, id);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -66,11 +66,11 @@ public class VendaController {
 	}
 
 	@GetMapping("/findByIdVenda{idVenda}")
-	public ResponseEntity<Venda> delete(@PathVariable long idVenda) {
+	public ResponseEntity<Venda> delete(@PathVariable Long id) {
 
 		try {
 
-			Venda venda = this.vendaService.findById(idVenda);
+			Venda venda = this.vendaService.findById(id);
 			return new ResponseEntity<>(venda, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -80,10 +80,10 @@ public class VendaController {
 	}
 
 	@DeleteMapping("/delete/{idVenda}")
-	public ResponseEntity<String> delete(@PathVariable int idVenda) {
+	public ResponseEntity<String> delete(@PathVariable long id) {
 
 		try {
-			String mensagem = this.vendaService.delete(idVenda);
+			String mensagem = this.vendaService.delete(id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 
 		} catch (Exception e) {

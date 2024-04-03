@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import app.entity.Cliente;
 import app.service.ClienteService;
 
-@RestController
-@RequestMapping("/api/cliente")
+@RestController //marcar uma classe como uma controller
+@RequestMapping("/api/cliente")//usando para mapear uma classe ou um metodo na controller nesse caso uma url
 public class ClienteController {
 
-	@Autowired
+	@Autowired //anotacao para o objeto receber anotacoes externas
 	private ClienteService clienteService;
 
-	@PostMapping("save")
+	@PostMapping("save")//usado para mapear requisicoes https do tipo post
 	public ResponseEntity<String> save(@RequestBody Cliente cliente) {
 		try {
 			String mensagem = this.clienteService.save(cliente);
