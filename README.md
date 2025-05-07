@@ -90,6 +90,4 @@ Este projeto foi desenvolvido utilizando **Java com Spring Boot** e **Maven**, n
 - Integração com um sistema de pagamento.
 - Dashboard para análise de vendas.
 
----
-Projeto desenvolvido por **[Seu Nome](https://github.com/leoocalegario)**. Para dúvidas ou sugestões, entre em contato! 🚀
 
